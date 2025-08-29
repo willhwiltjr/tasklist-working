@@ -1,5 +1,22 @@
 public enum PriorityGroup {
-    ALPHA,
-    BETA,
-    CHARLIE
+    ALPHA("ALPHA", 1),
+    BETA("BETA", 2),
+    CHARLIE("CHARLIE", 3);
+
+    private final String name;
+    private final int level;
+
+    PriorityGroup(String name, int level) {
+        this.name = name;
+        this.level = level;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
 }
+
