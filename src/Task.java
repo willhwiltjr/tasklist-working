@@ -1,7 +1,9 @@
-import java.time;
+import java.time.*;
+
 
 public class Task {
     private PriorityGroup pioritygroup;
-    private
-
+    private LocalDate dateEntered;
+    private LocalDate dateFinished;
+    private String taskNotes;
 }
