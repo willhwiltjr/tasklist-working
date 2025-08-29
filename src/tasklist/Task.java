@@ -1,3 +1,5 @@
+package tasklist;
+
 import java.time.*;
 
 
@@ -40,7 +42,7 @@ public class Task {
 
 
     //"setters these will allow us to set the date finished and update the notes and completed boolean"//
-    //"make a Task into a string to amend to a csv file"
+    //"make a tasklist.Task into a string to amend to a csv file"
     public String toCSV() {
         return String.join(",",
                 prioritygroup.name(),
@@ -72,7 +74,7 @@ public class Task {
         this.prioritygroup = newPriority;
     }
     //"we need getters to enable us to compare"//
-    //"private PriorityGroup;"
+    //"private tasklist.PriorityGroup;"
     public PriorityGroup getPriorityGroup() {
         return prioritygroup;
     }

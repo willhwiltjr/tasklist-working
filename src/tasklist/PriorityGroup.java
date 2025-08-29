@@ -1,3 +1,5 @@
+package tasklist;
+
 public enum PriorityGroup {
     ALPHA("ALPHA", 1),
     BETA("BETA", 2),
