@@ -57,5 +57,11 @@ public class TaskFileHandler {
         }
     }
 
+    public boolean taskExists(Task task) throws IOException {
+        List<Task> uncompletedTasks = readTasks(uncompletedFile);
+        return uncompletedTasks.stream()
+                .anyMatch(existing -> existing.toCSV().equals(task.toCSV()));
+    }
+
 }
 

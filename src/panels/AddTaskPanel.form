@@ -84,7 +84,7 @@
             <properties/>
             <border type="etched"/>
             <children>
-              <component id="f1267" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+              <component id="f1267" class="javax.swing.JComboBox" binding="priorityComboBox">
                 <constraints>
                   <grid row="0" column="0" row-span="2" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
                     <minimum-size width="50" height="25"/>
@@ -108,7 +108,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="d17d8" class="javax.swing.JTextArea" binding="textField1" default-binding="true">
+                  <component id="d17d8" class="javax.swing.JTextArea" binding="notes">
                     <constraints/>
                     <properties/>
                   </component>
@@ -137,7 +137,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="8ba9f" class="javax.swing.JButton" binding="button1" default-binding="true">
+              <component id="8ba9f" class="javax.swing.JButton" binding="submitButton">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                     <minimum-size width="50" height="25"/>
@@ -151,7 +151,7 @@
                   <verticalAlignment value="0"/>
                 </properties>
               </component>
-              <component id="9d401" class="javax.swing.JButton" binding="button2" default-binding="true">
+              <component id="9d401" class="javax.swing.JButton" binding="cancelButton">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
                     <minimum-size width="50" height="25"/>

@@ -3,7 +3,7 @@ package tasklist;
 import java.time.*;
 
 
-public class Task {
+public class Task implements Comparable<Task> {
     private PriorityGroup prioritygroup;
     private LocalDate dateEntered;
     private LocalDate dateFinished;
