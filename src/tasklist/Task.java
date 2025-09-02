@@ -108,6 +108,13 @@ public class Task implements Comparable<Task> {
         return this.dateEntered.compareTo(other.dateEntered);
     }
 
+    public boolean equalsIgnoringCompletion(Task other) {
+        return this.prioritygroup == other.prioritygroup &&
+                this.dateEntered.equals(other.dateEntered) &&
+                this.taskNotes.equals(other.taskNotes);
+    }
+
+
 
 
 

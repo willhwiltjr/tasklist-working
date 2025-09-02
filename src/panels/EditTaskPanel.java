@@ -72,9 +72,21 @@ public class EditTaskPanel extends JPanel {
     }
 
     private void saveTask() {
+
+
         String updatedNotes = notesTextArea.getText().trim();
         PriorityGroup updatedPriority = (PriorityGroup) priorityComboBox.getSelectedItem();
         boolean markAsCompleted = completedCheckBox.isSelected();
+
+            //try {
+                // Always remove the original first
+               // fileHandler.removeTaskFromUncompleted(originalTask);
+
+               // if (markAsCompleted) {
+                    //fileHandler.moveTaskToCompleted(updatedTask);  // will save to completed.csv
+               // } else {
+                  //  fileHandler.saveNewUncompletedTask(updatedTask);  // will save to uncompleted.csv
+               // }
 
         if (updatedNotes.isEmpty() || updatedPriority == null) {
             JOptionPane.showMessageDialog(this, "Please fill out all fields.", "Validation Error", JOptionPane.WARNING_MESSAGE);
@@ -85,13 +97,14 @@ public class EditTaskPanel extends JPanel {
 
         try {
             if (markAsCompleted) {
-                fileHandler.moveTaskToCompleted(updatedTask);
+                fileHandler.moveTaskToCompleted(originalTask, updatedTask);
+                JOptionPane.showMessageDialog(this, "Task updated successfully.");
             } else {
                 fileHandler.saveNewUncompletedTask(updatedTask);
+                JOptionPane.showMessageDialog(this, "Task edited successfully.");
+                listener.onTaskSubmitted(updatedTask);
             }
 
-            JOptionPane.showMessageDialog(this, "Task updated successfully.");
-            listener.onTaskSubmitted(updatedTask);
 
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Failed to update task:\n" + e.getMessage(),

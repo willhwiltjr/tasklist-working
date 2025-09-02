@@ -18,18 +18,18 @@ public class TaskFileHandler {
         System.out.println("Completed file path: " + completedFile.toAbsolutePath());
     }
 
-    public void moveTaskToCompleted(Task task) throws IOException {
+    public void moveTaskToCompleted(Task originalTask, Task updatedTask) throws IOException {
         // Read all uncompleted tasks
         List<Task> uncompletedTasks = readTasks(uncompletedFile);
 
         // Remove the completed task from uncompleted list
-        uncompletedTasks.removeIf(t -> t.toCSV().equals(task.toCSV()));
+        uncompletedTasks.removeIf(t -> t.equalsIgnoringCompletion(originalTask));
 
         // Write the updated uncompleted list
         writeTasks(uncompletedTasks, uncompletedFile);
 
         // Append the completed task to the completed file
-        appendTask(task, completedFile);
+        appendTask(updatedTask, completedFile);
     }
 
 

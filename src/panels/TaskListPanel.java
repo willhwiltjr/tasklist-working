@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,9 +65,11 @@ public class TaskListPanel extends JPanel {
             try {
                 if (showCompleted) {
                     List<Task> completedTasks = fileHandler.readCompletedTasks();
+                    Collections.sort(completedTasks);
                     showCompletedTasks(completedTasks);
                 } else {
                     List<Task> activeTasks = fileHandler.readUncompletedTasks();
+                    Collections.sort(activeTasks);
                     showUncompletedTasks(activeTasks);
                 }
             } catch (IOException e) {
@@ -86,7 +89,8 @@ public class TaskListPanel extends JPanel {
 
     private void showCompletedTasks(List<Task> tasks) {
         try {
-            List<Task> completedTasks = fileHandler.readCompletedTasks();  // we'll add this method
+            List<Task> completedTasks = fileHandler.readCompletedTasks();
+            Collections.sort(completedTasks);// we'll add this method
             taskTable.setModel(new TaskTableModel(completedTasks, true));
             SwingUtilities.invokeLater(this::setColumnWidths);
         } catch (IOException e) {
