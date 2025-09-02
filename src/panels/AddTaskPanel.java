@@ -5,65 +5,64 @@ import tasklist.Task;
 import tasklist.TaskFileHandler;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 
 public class AddTaskPanel extends JPanel {
-    private TaskPanelListener listener;
-    private TaskFileHandler fileHandler;
-    private JPanel panel1;
+    private JPanel panel1; // This is bound to your form root
     private JComboBox<PriorityGroup> priorityComboBox;
     private JButton submitButton;
     private JButton cancelButton;
     private JTextArea notes;
 
+    private final TaskPanelListener listener;
+    private final TaskFileHandler fileHandler;
+
     public AddTaskPanel(TaskPanelListener listener, TaskFileHandler fileHandler) {
         this.listener = listener;
         this.fileHandler = fileHandler;
 
-        // Initialize the priority combo box
+        // This line hooks up the .form layout with this panel
+        //$$$setupUI$$$();
+
+        // Add the generated panel (from .form) to this JPanel
+        setLayout(new BorderLayout());
+        add(panel1, BorderLayout.CENTER);
+
+        // Populate priority combo box
+        priorityComboBox.removeAllItems();
         for (PriorityGroup group : PriorityGroup.values()) {
             priorityComboBox.addItem(group);
         }
 
-        // Submit button logic
-        submitButton.addActionListener(e -> {
-            PriorityGroup selectedGroup = (PriorityGroup) priorityComboBox.getSelectedItem();
-            String taskNotes = notes.getText();
-
-            if (selectedGroup == null) {
-                JOptionPane.showMessageDialog(this, "Please select a priority level", "Missing Priority", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
-            if (taskNotes.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please enter task notes.", "Missing Notes", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
-            Task newTask = new Task(selectedGroup, taskNotes);
-
-            // Check for duplicates
-            try {
-                if (fileHandler != null && fileHandler.taskExists(newTask)) {
-                    JOptionPane.showMessageDialog(this, "Task already exists!", "Duplicate Task", JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error checking for duplicate task:\n" + ex.getMessage(), "File Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            listener.onTaskSubmitted(newTask);
-        });
-
-        // Cancel button logic
+        // Attach button listeners
+        submitButton.addActionListener(e -> handleSubmit());
         cancelButton.addActionListener(e -> listener.onTaskCancelled());
     }
 
+    private void handleSubmit() {
+        PriorityGroup selectedGroup = (PriorityGroup) priorityComboBox.getSelectedItem();
+        String taskNotes = notes.getText().trim();
 
+        if (selectedGroup == null || taskNotes.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please complete all fields.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-    public JPanel getPanel() {
-        return panel1;
+        Task newTask = new Task(selectedGroup, taskNotes);
+        try {
+            if (fileHandler != null && fileHandler.taskExists(newTask)) {
+                JOptionPane.showMessageDialog(this, "Task already exists!", "Duplicate Task", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            //create/write the task to file
+            fileHandler.saveNewUncompletedTask(newTask);
+            //notifylistener
+            listener.onTaskSubmitted(newTask);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error checking for duplicate task:\n" + ex.getMessage(), "File Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
     }
 }
 

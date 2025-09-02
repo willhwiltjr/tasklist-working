@@ -12,6 +12,10 @@ public class TaskFileHandler {
     public TaskFileHandler(String uncompletedFilename, String completedFilename) {
         this.uncompletedFile = Paths.get(uncompletedFilename);
         this.completedFile = Paths.get(completedFilename);
+
+        //tracefilepaths comment out when finished debugging
+        System.out.println("Uncompleted file path: " + uncompletedFile.toAbsolutePath());
+        System.out.println("Completed file path: " + completedFile.toAbsolutePath());
     }
 
     public void moveTaskToCompleted(Task task) throws IOException {
@@ -62,6 +66,19 @@ public class TaskFileHandler {
         return uncompletedTasks.stream()
                 .anyMatch(existing -> existing.toCSV().equals(task.toCSV()));
     }
+    public List<Task> readUncompletedTasks() throws IOException {
+        return readTasks(uncompletedFile);
+    }
+
+    public List<Task> readCompletedTasks() throws IOException {
+        return readTasks(completedFile);
+    }
+
+    public void saveNewUncompletedTask(Task task) throws IOException {
+        appendTask(task, uncompletedFile);
+    }
+
+
 
 }
 

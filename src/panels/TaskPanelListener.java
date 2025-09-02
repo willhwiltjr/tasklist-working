@@ -5,5 +5,7 @@ import tasklist.Task;
 public interface TaskPanelListener {
     void onTaskSubmitted(Task task);
     void onTaskCancelled();
+    void onEditTaskRequested(Task task);
+
 }
 

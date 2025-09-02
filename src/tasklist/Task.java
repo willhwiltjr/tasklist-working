@@ -18,6 +18,11 @@ public class Task implements Comparable<Task> {
         this.isCompleted = false;
     }
 
+    public Task(PriorityGroup priority, LocalDate dateEntered, String notes, boolean isCompleted) {
+        this(priority, dateEntered, isCompleted ? LocalDate.now() : null, notes, isCompleted);
+    }
+
+
     public Task(PriorityGroup priority, LocalDate dateEntered, LocalDate dateFinished, String notes, boolean isCompleted) {
         this.prioritygroup = priority;
         this.dateEntered = dateEntered;
