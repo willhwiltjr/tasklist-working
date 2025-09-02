@@ -58,26 +58,6 @@ public class Task implements Comparable<Task> {
         );
     }
 
-    //"implement the dateFinished setter"//
-    public void setDateFinished() {
-        this.dateFinished = LocalDate.now();
-    }
-    //"implement the taskNotes updater"//
-    public void setTaskNotes(String notes) {
-        this.taskNotes = notes;
-    }
-    //"add an appender method for taskNotes"//
-    public void updateTaskNotes(String notes){
-        this.taskNotes = this.taskNotes.concat(notes);
-    }
-    //"switch the state of isCompleted"//
-    public void switchCompleted(){
-        this.isCompleted = !this.isCompleted;
-    }
-    //"setter for priority"
-    public void setPriorityGroup(PriorityGroup newPriority) {
-        this.prioritygroup = newPriority;
-    }
     //"we need getters to enable us to compare"//
     //"private tasklist.PriorityGroup;"
     public PriorityGroup getPriorityGroup() {

@@ -116,7 +116,7 @@ public class TaskListPanel extends JPanel {
             widths = new double[]{0.15, 0.15, 0.70};
         }
 
-        // Default to table width if scrollpane not laid out yet
+        // Default to table width if scroll pane not laid out yet
         int tableWidth = taskTable.getParent() != null
                 ? taskTable.getParent().getWidth()
                 : taskTable.getWidth();

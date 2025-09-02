@@ -44,7 +44,7 @@ public class TasklistHome extends JFrame implements TaskPanelListener {
         JButton btnActive = new JButton("Active Tasks");
         JButton btnCompleted = new JButton("Completed Tasks");
         JButton btnAdd = new JButton("Add Task");
-        JButton btnSettings = new JButton("Settings");
+        JButton btnSettings = new JButton("Edit Task");
 
         buttonPanel.add(btnActive);
         buttonPanel.add(btnCompleted);

@@ -13,10 +13,6 @@ public enum PriorityGroup {
         this.level = level;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public int getLevel() {
         return level;
     }
